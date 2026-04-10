@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}FoodGuard AI | Built for Dhaka{% endblock %}
+
+{% block content %}
+<section class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:p-10">
+    <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+            <p class="inline-flex rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-teal">AI-Powered Food Safety Checker</p>
+            <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 lg:text-5xl">FoodGuard AI</h1>
+            <p class="mt-2 text-lg font-semibold text-brand-teal">Dhakar khabarer nirapotta, ek chhobite bujhun.</p>
+            <p class="mt-3 text-sm leading-relaxed text-gray-700">Take a photo. Get your answer. FoodGuard AI analyzes your meal using Gemini and your personal health profile to show a clear safety score, halal guidance, and actionable tips in seconds.</p>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href="{% url 'foodguardapp:signup' %}" class="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand-teal px-5 text-sm font-semibold text-white hover:bg-teal-800">Sign Up Free</a>
+                <a href="#how-it-works" class="inline-flex min-h-12 items-center justify-center rounded-xl border border-gray-300 px-5 text-sm font-semibold text-gray-700 hover:bg-gray-100">See How It Works</a>
+            </div>
+        </div>
+        <div class="mx-auto w-full max-w-xs rounded-[2rem] border-8 border-gray-900 bg-gray-50 p-4 shadow-lg">
+            <div class="rounded-2xl border border-gray-200 bg-white p-4">
+                <p class="text-xs font-semibold text-gray-500">Detected Food</p>
+                <p class="mt-1 text-lg font-bold text-gray-900">Beef Kacchi Biryani</p>
+                <div class="mt-3 rounded-xl bg-amber-100 px-3 py-2 text-xs font-semibold text-amber-800">Safety Verdict: Caution</div>
+                <div class="mt-4 flex items-end justify-between">
+                    <div>
+                        <p class="text-xs text-gray-500">Safety Score</p>
+                        <p class="text-4xl font-extrabold text-amber-700">58</p>
+                    </div>
+                    <p class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">Halal: Likely</p>
+                </div>
+                <ul class="mt-4 space-y-2 text-xs text-gray-600">
+                    <li>- High carbs for diabetes profile</li>
+                    <li>- Sodium may affect BP</li>
+                    <li>- Ask for less oil</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works" class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 lg:p-8">
+    <h2 class="text-xl font-bold text-gray-900">How It Works</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-3">
+        <article class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+            <p class="text-xs font-semibold text-brand-teal">Step 1</p>
+            <h3 class="mt-1 font-bold text-gray-900">Upload Photo</h3>
+            <p class="mt-2 text-sm text-gray-600">Take a food photo from home, restaurant, or street stall.</p>
+        </article>
+        <article class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+            <p class="text-xs font-semibold text-brand-teal">Step 2</p>
+            <h3 class="mt-1 font-bold text-gray-900">AI Analysis</h3>
+            <p class="mt-2 text-sm text-gray-600">Gemini identifies ingredients and estimates nutrition and freshness.</p>
+        </article>
+        <article class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+            <p class="text-xs font-semibold text-brand-teal">Step 3</p>
+            <h3 class="mt-1 font-bold text-gray-900">Safety Score</h3>
+            <p class="mt-2 text-sm text-gray-600">Get profile-based warnings, halal status, and practical suggestions.</p>
+        </article>
+    </div>
+</section>
+
+<section class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 lg:p-8">
+    <h2 class="text-xl font-bold text-gray-900">Why FoodGuard?</h2>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-xl border border-gray-200 p-4">
+            <p class="text-sm font-semibold text-gray-900">Personalised</p>
+            <p class="mt-1 text-sm text-gray-600">Scores aligned with your own health profile.</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-4">
+            <p class="text-sm font-semibold text-gray-900">Instant</p>
+            <p class="mt-1 text-sm text-gray-600">Results delivered in seconds with clear verdicts.</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-4">
+            <p class="text-sm font-semibold text-gray-900">Free Forever</p>
+            <p class="mt-1 text-sm text-gray-600">No paywall. No ads. Just daily food safety support.</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 p-4">
+            <p class="text-sm font-semibold text-gray-900">Halal-Aware</p>
+            <p class="mt-1 text-sm text-gray-600">Built for Bangladeshi users with local religious context.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 lg:p-8">
+    <h2 class="text-xl font-bold text-gray-900">Built for Dhaka</h2>
+    <p class="mt-3 text-sm leading-relaxed text-gray-700">Designed for local food realities: adulteration risks, unhygienic street cooking, and mislabeled products. FoodGuard focuses on the neighborhoods where people actually eat every day.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Mirpur</span>
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Gulshan</span>
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Old Dhaka</span>
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Dhanmondi</span>
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Uttara</span>
+        <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">Mohammadpur</span>
+    </div>
+</section>
+
+<section class="mt-8 grid gap-4 lg:grid-cols-3">
+    <article class="rounded-2xl border border-gray-200 bg-white p-5">
+        <p class="text-sm text-gray-700">"My husband has diabetes. This app helps me decide faster before buying lunch from New Market."</p>
+        <p class="mt-3 text-xs font-semibold text-gray-900">Rokeya, 42 - New Market</p>
+    </article>
+    <article class="rounded-2xl border border-gray-200 bg-white p-5">
+        <p class="text-sm text-gray-700">"I gym regularly and eat out a lot. The score and macro estimate are very useful."</p>
+        <p class="mt-3 text-xs font-semibold text-gray-900">Sakib, 26 - Banani</p>
+    </article>
+    <article class="rounded-2xl border border-gray-200 bg-white p-5">
+        <p class="text-sm text-gray-700">"The color verdict is simple for me. Green means safe, red means avoid."</p>
+        <p class="mt-3 text-xs font-semibold text-gray-900">Fatema, 55 - Mirpur</p>
+    </article>
+</section>
+
+<section class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 lg:p-8">
+    <h2 class="text-xl font-bold text-gray-900">FAQ</h2>
+    <div class="mt-4 space-y-3" id="faq-list">
+        <details class="rounded-xl border border-gray-200 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-gray-900">Is FoodGuard free?</summary>
+            <p class="mt-2 text-sm text-gray-600">Yes. The platform is free to use with no paywalls for core safety analysis.</p>
+        </details>
+        <details class="rounded-xl border border-gray-200 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-gray-900">Does it support Bangladeshi foods?</summary>
+            <p class="mt-2 text-sm text-gray-600">Yes. FoodGuard is designed for Bangladeshi and South Asian meals.</p>
+        </details>
+        <details class="rounded-xl border border-gray-200 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-gray-900">Can I use it for halal checks?</summary>
+            <p class="mt-2 text-sm text-gray-600">Yes. It returns halal status with confidence notes where certainty is limited.</p>
+        </details>
+        <details class="rounded-xl border border-gray-200 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-gray-900">Will my profile data be shared?</summary>
+            <p class="mt-2 text-sm text-gray-600">No. Only the minimum required data is sent for analysis and is not sold.</p>
+        </details>
+        <details class="rounded-xl border border-gray-200 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-gray-900">What if a photo is unclear?</summary>
+            <p class="mt-2 text-sm text-gray-600">The app marks confidence and gives cautious guidance when image quality is low.</p>
+        </details>
+    </div>
+</section>
+
+<footer class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 text-sm text-gray-600">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="font-semibold text-gray-900">FoodGuard AI</p>
+        <div class="flex gap-4">
+            <a href="#" class="hover:text-brand-teal">About</a>
+            <a href="#" class="hover:text-brand-teal">Privacy</a>
+            <a href="#" class="hover:text-brand-teal">Contact</a>
+        </div>
+    </div>
+</footer>
+{% endblock %}

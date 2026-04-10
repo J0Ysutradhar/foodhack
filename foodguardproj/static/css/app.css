@@ -1,0 +1,20 @@
+body {
+    font-family: 'Manrope', 'Hind Siliguri', sans-serif;
+}
+
+input[type='checkbox'] {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #9ca3af;
+    accent-color: #0f6e56;
+}
+
+.wizard-step label {
+    display: block;
+}
+
+#upload-zone.drag-over {
+    border-color: #0f6e56;
+    background-color: #e1f5ee;
+}

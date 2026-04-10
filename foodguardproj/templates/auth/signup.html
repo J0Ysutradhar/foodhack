@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up | FoodGuard AI{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-lg">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:p-8">
+        <h1 class="text-2xl font-bold text-gray-900">Create your account</h1>
+        <p class="mt-2 text-sm text-gray-600">Start using FoodGuard AI for free.</p>
+
+        <form method="post" class="mt-6 space-y-4">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <div>
+                <label for="{{ form.full_name.id_for_label }}" class="mb-1 block text-sm font-semibold text-gray-700">Full name</label>
+                {{ form.full_name }}
+                {% if form.full_name.errors %}<p class="mt-1 text-xs text-red-600">{{ form.full_name.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.email.id_for_label }}" class="mb-1 block text-sm font-semibold text-gray-700">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}<p class="mt-1 text-xs text-red-600">{{ form.email.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.password1.id_for_label }}" class="mb-1 block text-sm font-semibold text-gray-700">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}<p class="mt-1 text-xs text-red-600">{{ form.password1.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.password2.id_for_label }}" class="mb-1 block text-sm font-semibold text-gray-700">Confirm password</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}<p class="mt-1 text-xs text-red-600">{{ form.password2.errors.0 }}</p>{% endif %}
+            </div>
+
+            <button type="submit" class="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-brand-teal px-5 text-sm font-semibold text-white hover:bg-teal-800">Sign Up Free</button>
+        </form>
+
+        <p class="mt-4 text-center text-sm text-gray-600">Already have an account? <a href="{% url 'foodguardapp:login' %}" class="font-semibold text-brand-teal">Login</a></p>
+    </div>
+</div>
+{% endblock %}

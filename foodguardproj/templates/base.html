@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FoodGuard AI{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'Hind Siliguri', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            teal: '#0F6E56',
+                            light: '#E1F5EE',
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-gray-900 pb-24 lg:pb-0">
+    <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-6">
+            <a href="{% url 'foodguardapp:landing' %}" class="text-lg font-extrabold tracking-tight text-brand-teal">FoodGuard AI</a>
+            <nav class="hidden items-center gap-6 text-sm font-medium lg:flex">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'foodguardapp:dashboard' %}" class="text-gray-700 hover:text-brand-teal">Dashboard</a>
+                    <a href="{% url 'foodguardapp:analyzer' %}" class="text-gray-700 hover:text-brand-teal">Analyze</a>
+                    <a href="{% url 'foodguardapp:history_list' %}" class="text-gray-700 hover:text-brand-teal">History</a>
+                    <a href="{% url 'foodguardapp:profile_edit' %}" class="text-gray-700 hover:text-brand-teal">Profile</a>
+                    <form method="post" action="{% url 'foodguardapp:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="rounded-lg bg-gray-100 px-3 py-2 text-gray-700 hover:bg-gray-200">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'foodguardapp:login' %}" class="text-gray-700 hover:text-brand-teal">Login</a>
+                    <a href="{% url 'foodguardapp:signup' %}" class="rounded-lg bg-brand-teal px-4 py-2 text-white hover:bg-teal-800">Sign Up Free</a>
+                {% endif %}
+            </nav>
+            {% if request.user.is_authenticated %}
+                <span class="rounded-full bg-brand-light px-3 py-1 text-xs font-semibold text-brand-teal lg:hidden">{{ request.user.email }}</span>
+            {% else %}
+                <a href="{% url 'foodguardapp:login' %}" class="rounded-lg bg-brand-teal px-4 py-2 text-sm font-semibold text-white lg:hidden">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-7xl px-4 py-5 lg:px-6 lg:py-8">
+        {% if request.user.is_authenticated and profile_incomplete and request.path != '/profile/setup/' %}
+            <div class="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <p>Your profile is {{ profile_completion }}% complete. Complete it for accurate AI safety results.</p>
+                    <a href="{% url 'foodguardapp:profile_setup' %}" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-amber-600 px-4 font-semibold text-white hover:bg-amber-700">Complete Profile</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if messages %}
+            <div class="mb-4 space-y-2">
+                {% for message in messages %}
+                    <div class="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if request.user.is_authenticated %}
+        <nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white lg:hidden">
+            <div class="grid grid-cols-4">
+                <a href="{% url 'foodguardapp:dashboard' %}" class="flex min-h-14 flex-col items-center justify-center text-xs font-semibold {% if request.path == '/dashboard/' %}text-brand-teal{% else %}text-gray-500{% endif %}">
+                    Home
+                </a>
+                <a href="{% url 'foodguardapp:analyzer' %}" class="flex min-h-14 flex-col items-center justify-center text-xs font-semibold {% if request.path == '/analyze/' %}text-brand-teal{% else %}text-gray-500{% endif %}">
+                    Analyze
+                </a>
+                <a href="{% url 'foodguardapp:history_list' %}" class="flex min-h-14 flex-col items-center justify-center text-xs font-semibold {% if request.path == '/history/' %}text-brand-teal{% else %}text-gray-500{% endif %}">
+                    History
+                </a>
+                <a href="{% url 'foodguardapp:profile_edit' %}" class="flex min-h-14 flex-col items-center justify-center text-xs font-semibold {% if request.path == '/profile/edit/' or request.path == '/profile/setup/' %}text-brand-teal{% else %}text-gray-500{% endif %}">
+                    Profile
+                </a>
+            </div>
+        </nav>
+    {% endif %}
+
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
